@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('historial');
             $table->string('imagen');
             $table->integer('user_id');
+            $table->integer('tipo_id');
+            $table->integer('actividad_id');
+            $table->integer('raza_id');
+            $table->integer('tamano_id');
             $table->timestamps();
         });
     }

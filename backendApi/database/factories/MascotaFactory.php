@@ -22,6 +22,11 @@ class MascotaFactory extends Factory
             'historial' => fake()->sentence(),
             'imagen' => fake()->phoneNumber(),
             'user_id' => fake()->numberBetween(1,5),
+            'tipo_id' => fake()->numberBetween(1,5),
+            'actividad_id' => fake()->numberBetween(1,5),
+            'raza_id' => fake()->numberBetween(1,5),
+            'tamano_id' => fake()->numberBetween(1,5),
+
         ];
     }
 }
