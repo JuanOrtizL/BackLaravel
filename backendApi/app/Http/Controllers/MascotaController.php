@@ -39,6 +39,11 @@ class MascotaController extends Controller
         $pet->historial = $request->historial;
         $pet->imagen = $request->imagen;
         $pet->user_id = $request->user_id;
+        $pet->tipo_id = $request->tipo_id;
+        $pet->actividad_id = $request->actividad_id;
+        $pet->raza_id = $request->raza_id;
+        $pet->tamano_id = $request->tamano_id;
+
         $pet->save();
 
         return response()->json([
