@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\AdministradorResource;
+use App\Models\Administrador;
 use Illuminate\Http\Request;
 
 class AdministradorController extends Controller
@@ -11,23 +13,18 @@ class AdministradorController extends Controller
      */
     public function index()
     {
-        //
+        $admin = Administrador::all();
+        return AdministradorResource::collection(Administrador::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $admin = Administrador::create($request->all());
+        return response()->json([
+            'success'=>true,
+            'data'=>new AdministradorResource($admin)
+        ],201);
     }
 
     /**
@@ -35,23 +32,23 @@ class AdministradorController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $admin = Administrador::find($id);
+        return response()->json($admin, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $admin = Administrador::find($id);
+        $admin->nombre =$request->nombre;
+        $admin->user=$request->user;
+        $admin->password=$request->password;
+        $admin->save();
+
+        return response()->json([
+            'success'=>true,
+            'data'=>$admin
+        ], 200);
     }
 
     /**
@@ -59,6 +56,7 @@ class AdministradorController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Administrador::find($id)->delete();
+        return response()->json(['success'=>true],200);
     }
 }
